@@ -11,9 +11,6 @@ public class DTOIndividuo {
     private int edad;
     private int dni;
 
-    private String calle;
-    private int numCalle;
-
     public DTOIndividuo() {
     }
 
@@ -51,22 +48,6 @@ public class DTOIndividuo {
 
     public void setDni(int dni) {
         this.dni = dni;
-    }
-
-    public String getCalle() {
-        return calle;
-    }
-
-    public void setCalle(String calle) {
-        this.calle = calle;
-    }
-
-    public int getNumCalle() {
-        return numCalle;
-    }
-
-    public void setNumCalle(int numCalle) {
-        this.numCalle = numCalle;
     }
 
     public int getEdad() {
