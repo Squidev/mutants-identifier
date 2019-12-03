@@ -52,7 +52,7 @@ public class Dna implements Serializable{
         return isMutant;
     }
 
-    public void setMutant(boolean isMutant) {
+    public void setIsMutant(boolean isMutant) {
         this.isMutant = isMutant;
     }
 }

@@ -23,4 +23,7 @@ public interface DnaRepository extends JpaRepository<Dna, Integer> {
 	
 	@Query("SELECT AVG(isMutant) as avg_mutant FROM Dna d WHERE d.isMutant=false or d.isMutant=true")
 	Optional<Object> getMutantRatio();
+
+	@Query("FROM Dna d WHERE d.dnaData=dna")
+	Optional<Dna> findByDnaString(String dna);
 }

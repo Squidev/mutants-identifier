@@ -8,10 +8,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DemoApplication {
+public class MutantsIdentifierApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(MutantsIdentifierApplication.class, args);
 
 		Dna dnaEntity = new Dna();
 		String[] dna = {"SFEF","DEGD","DEGR","DGRY"};
