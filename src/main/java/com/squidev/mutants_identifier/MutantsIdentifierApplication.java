@@ -11,17 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class MutantsIdentifierApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MutantsIdentifierApplication.class, args);
-
-		Dna dnaEntity = new Dna();
-		String[] dna = {"SFEF","DEGD","DEGR","DGRY"};
-		dnaEntity.setDnaData(dna);
-		System.out.println("Antes de entrar en el for");
-		for (String string : dnaEntity.getDnaData()) {
-			System.out.println("Dentro del for");
-			System.out.println(string); 	
-		}
-		
+		SpringApplication.run(MutantsIdentifierApplication.class, args);	
 	}
 
 }

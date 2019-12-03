@@ -12,7 +12,7 @@ import com.squidev.mutants_identifier.entities.Dna;
  * MutantRepository
  */
 @Repository
-public interface DnaRepository extends JpaRepository<Dna, Integer> {
+public interface DnaRepository extends JpaRepository<Dna, String> {
     @Query("SELECT COUNT(*) as mutant_count FROM Dna d where d.isMutant=true")
 	Optional<Object> getMutantCount();
     

@@ -1,11 +1,9 @@
 package com.squidev.mutants_identifier;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 
 import com.squidev.mutants_identifier.controllers.DnaController;
@@ -13,7 +11,6 @@ import com.squidev.mutants_identifier.entities.Dna;
 import com.squidev.mutants_identifier.repositories.DnaRepository;
 import com.squidev.mutants_identifier.services.DnaService;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -23,8 +20,6 @@ import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -65,7 +60,7 @@ public class DnaRepositoryTest {
 		dnaEntity.setDnaData(dnaArray);
 		dnaEntity.setIsMutant(false);
 		dnaRepository.save(dnaEntity);
-		assertThat(dnaEntity.getId()).isNotNull();
+		assertThat(dnaEntity.getDnaData()).isNotNull();
 		System.out.println(3);
 	}
 
