@@ -1,5 +1,7 @@
 package com.squidev.mutants_identifier.services;
 
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 
 import com.squidev.mutants_identifier.dtos.DTOStats;
@@ -21,9 +23,18 @@ public class StatsService {
     @Transactional
     public DTOStats getStats() {
         DTOStats dto = new DTOStats();
-        //dto.setCount_mutant_dna(repository.getMutantCount());
-        //dto.setCount_human_dna(repository.getHumanCount());
-       // dto.setRatio(dto.getCount_mutant_dna()/dto.getCount_human_dna());
+        Optional<Object> mutantCount = repository.getMutantCount();
+        Optional<Object> humanCount = repository.getHumanCount();
+        Optional<Object> ratio = repository.getMutantRatio();
+        if (mutantCount.isPresent()) {
+			dto.setCount_mutant_dna((Long) mutantCount.get());
+        }
+        if (humanCount.isPresent()) {
+			dto.setCount_human_dna((Long) humanCount.get());
+		}
+		if (ratio.isPresent()) {
+			dto.setRatio((Double) ratio.get());
+		}
         return dto;
     }
 }
