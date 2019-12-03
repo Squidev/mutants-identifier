@@ -1,4 +1,4 @@
-package com.squidev.mutants;
+package com.squidev.mutants_identifier;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -19,6 +19,9 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.Arrays;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -37,11 +40,10 @@ public class ApiRestTests {
 	private MockMvc mvc;
 
 	@DisplayName("Api Test: Mutant DNA")
-	@Test
 	@RepeatedTest(30)
 	void isMutantTest(TestInfo testInfo) throws Exception {
 		String[] dnaArray = {"ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"};
-		MvcResult result = mvc.perform(post("/mutant/").param("dna", asJsonString(dnaArray))
+		MvcResult result = mvc.perform(post("/mutant/").content("{\"dna\":"+asJsonString(dnaArray)+"}") 
 							.contentType(MediaType.APPLICATION_JSON))
 							.andExpect(status().isOk())
 							.andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_PLAIN))
@@ -50,28 +52,26 @@ public class ApiRestTests {
 							.andExpect(status().isOk())
 							.andReturn();
 		String content = result.getResponse().getContentAsString();
-		System.out.println("Param send "+asJsonString(dnaArray)+" Api Return ===> "+content);
+		System.out.println("JSON send: {\"dna\":"+asJsonString(dnaArray)+"} Api Return ===> "+content);
 	}
 
 	@DisplayName("Api Test: Human DNA")
-	@Test
 	@RepeatedTest(30)
 	void isHumanTest(TestInfo testInfo) throws Exception {
 		String[] dnaArray = {"ATGCGA", "CAGTGC", "TAATGT", "AGACAG", "GCGTCA", "TCACTG"};
-		MvcResult result = mvc.perform(post("/mutant/").param("dna", asJsonString(dnaArray))
+		MvcResult result = mvc.perform(post("/mutant/").content("{\"dna\":"+asJsonString(dnaArray)+"}")
 							.contentType(MediaType.APPLICATION_JSON))
 							.andExpect(status().isForbidden())
 							.andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_PLAIN))
-							.andExpect(content().string(""))
+							.andExpect(content().string("FORBIDDEN"))
 							.andDo(MockMvcResultHandlers.print())
 							.andExpect(status().isForbidden())
 							.andReturn();
 		String content = result.getResponse().getContentAsString();
-		System.out.println("Param send "+asJsonString(dnaArray)+" Api Return ===> "+content);
+		System.out.println("JSON send: {\"dna\":"+asJsonString(dnaArray)+"} Api Return ===> "+content);
 	}
 
 	@DisplayName("Api Test: Stats")
-	@Test
 	@RepeatedTest(30)
 	public void statsTest(TestInfo testInfo) throws Exception {
 		MvcResult result = mvc.perform(get("/stats").contentType(MediaType.APPLICATION_JSON))

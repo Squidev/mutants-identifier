@@ -1,4 +1,4 @@
-package com.squidev.mutants;
+package com.squidev.mutants_identifier;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -27,7 +27,6 @@ public class DnaServiceTest {
 	DnaService dnaService;
 
 	@DisplayName("DnaService Test: Mutant DNA")
-	@Test
 	@RepeatedTest(2)
 	public void mutantDnaTest(final TestInfo testInfo) throws Exception {
 		final String[] dnaArray = {"ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"};

@@ -1,4 +1,4 @@
-package com.squidev.mutants;
+package com.squidev.mutants_identifier;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -56,10 +56,8 @@ public class DnaRepositoryTest {
 		System.out.println(1);
 	}
 
-	@Order(3)
+	@Order(2)
 	@DisplayName("Save on Repository Test")
-	@Test
-	@Disabled
 	@RepeatedTest(3)
 	public void saveDnaTest(TestInfo testInfo) throws Exception {
 		String[] dnaArray = {"ATGCGA", "CAGTGC", "TAATGT", "AGACAG", "GCGTCA", "TCACTG"};
@@ -71,9 +69,8 @@ public class DnaRepositoryTest {
 		System.out.println(3);
 	}
 
-	@Order(2)
+	@Order(3)
 	@DisplayName("Find on Repository Test")
-	@Test
 	@RepeatedTest(value = 5, name = "{displayName} ---> {currentRepetition}")
 	public void findDnaTest(TestInfo testInfo) throws Exception {
 		String[] dnaArray = {"ATGCGA", "CAGTGC", "TAATGT", "AGACAG", "GCGTCA", "TCACTG"};
