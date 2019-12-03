@@ -39,10 +39,11 @@ public class Dna implements Serializable{
 
     //Sets the dna as a single String, formatted as "[string1, string2, string3, ...]".
     public void setDnaData(String[] dna) {
+        /* debug: 
         System.out.println("Recibiendo array de cadenas:");
         for (String string : dna) {
-            //debug: System.out.println(string);
-        }
+            System.out.println(string);
+        } */
         this.dnaData = Arrays.toString(dna);
         //debug: System.out.println("Almacenada cadena:"+dnaData);
     }

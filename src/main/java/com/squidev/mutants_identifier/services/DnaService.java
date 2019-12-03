@@ -47,13 +47,13 @@ public class DnaService {
             for (String sequence : extractedSequences) {
                 if (sequence.contains(mutantSequence)) {
                     dnaEntity.setMutant(true);
-                    //save(dnaEntity);
+                    repository.save(dnaEntity);
                     return true;
                 }
             }
         }
         dnaEntity.setMutant(false);
-        //repository.save(dnaEntity);
+        repository.save(dnaEntity);
         return false;
     }
 
