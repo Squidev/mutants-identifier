@@ -6,11 +6,13 @@ import com.squidev.mutants_identifier.entities.Dna;
 import com.squidev.mutants_identifier.repositories.DnaRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
  * DnaService
  */
+@Service
 public class DnaService {
 
     @Autowired
@@ -18,8 +20,13 @@ public class DnaService {
     static char[] ALLOWED_CHARS = new char[] {'A','T','C','G'};
     static int CONSECUTIVE_REPETITIONS = 4;
 
-
+    @Transactional
     public boolean isMutant (String[] dna) {
+        
+        //Create the Dna entity to storage the dna
+        Dna dnaEntity = new Dna();
+        dnaEntity.setDnaData(dna);
+        
         char[][] matrix = matrixParser(dna);
         ArrayList<String> extractedSequences = new ArrayList<>();
         //Get a list of dna sequences extracted from rows.
@@ -39,10 +46,15 @@ public class DnaService {
             }
             for (String sequence : extractedSequences) {
                 if (sequence.contains(mutantSequence)) {
+                    dnaEntity.setMutant(true);
+                    //save(dnaEntity);
                     return true;
                 }
             }
         }
+        dnaEntity.setMutant(false);
+        //repository.save(dnaEntity);
+        return false;
     }
 
     private char[][] matrixParser (String[] dna) {
